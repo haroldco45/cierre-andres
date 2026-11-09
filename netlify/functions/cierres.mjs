@@ -62,7 +62,7 @@ export default async (req) => {
       const mes = await store.get(key(tok, ym), { type: "json" });
       if (mes) for (const p of Object.values(mes)) planillas.push({ ...p, neg: tok });
     })));
-    return json({ negocios: owner ? negocios : negocios.filter(x => x.tok === n), planillas, from, to, toks, owner, wa: cfg.wa || "", vence: VENCE() });
+    return json({ negocios: owner ? negocios : negocios.filter(x => x.tok === n), planillas, from, to, toks, owner, wa: cfg.wa || process.env.WA_ANDRES || "", vence: VENCE() });
   }
 
   if (req.method === "POST") {
