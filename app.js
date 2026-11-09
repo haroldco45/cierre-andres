@@ -45,8 +45,8 @@ const T = {
   fDatos: 'Datos del cierre', establecimiento: 'Establecimiento', fecha: 'Fecha', hIni: 'Hora inicio', hFin: 'Hora final', responsable: 'Responsable', auxiliar: 'Auxiliar',
   fGastos: 'Compras y gastos', fGastosS: 'Todo respaldado con factura original. Las compras a crédito no suman en la venta.',
   desc: 'Descripción', cr: 'Crédito', co: 'Contado', og: 'Otros gastos', op: 'Gast. operativos', addRow: 'Agregar renglón', quitar: 'Quitar',
-  comprasPlaza: 'Compras en plaza', gastosMuertos: 'Gastos muertos', opNote: 'Fletes, vales, servicios, consumos del personal, etc.',
-  tCr: 'Total crédito (no suma en la venta)', tCo: 'Total contado', tOg: 'Total otros gastos', tOp: 'Total gastos operativos', totales: 'Totales', noSumar: 'No sumar en la venta',
+  comprasPlaza: 'COMPRAS EN PLAZA', gastosMuertos: 'GASTOS MUERTOS', opNote: 'Fletes, Vales, Servicios, consumos del personal etc,',
+  tCr: 'Total crédito (no suma en la venta)', tCo: 'Total contado', tOg: 'Total otros gastos', tOp: 'Total gastos operativos', totales: 'Totales', noSumar: 'NO SUMAR EN LA VENTA',
   fVenta: 'Venta del día', tg: 'Total gastos', tgN: 'Suma de las compras de contado más los gastos', efN: 'El efectivo que queda de la venta diaria', veN: 'Total de gastos más el efectivo',
   efAnt: 'Efectivo anterior planilla', efAcum: 'Total efectivo acumulado', efAcumN: 'Efectivo del día más el efectivo de la planilla anterior',
   fMov: 'Movimientos de caja', fMovS: 'Lo que entra y sale de la caja después del cierre.', descMov: 'Descripción del movimiento', en: 'Entra a caja', sa: 'Sale de caja', saldo: 'Saldo',
@@ -59,8 +59,8 @@ const T = {
   pend: '{n} planillas sin subir', subir: 'Subir', subidas: 'Planillas subidas', errSubir: 'No se pudieron subir. Revise el internet.',
   offline: 'Sin internet: se muestran las planillas guardadas en este celular.', alDia: 'Planillas al día', sync: 'Actualizado',
   descartar: '¿Salir sin guardar los cambios?', warnEf: 'El efectivo anterior ({a}) no coincide con el saldo de la planilla anterior ({b}).',
-  respNote: 'Es responsabilidad del cajero diligenciar y entregar este formato a la persona encargada, y de la persona encargada revisarlo y entregarlo al auxiliar contable.',
-  entregar: 'Entregar sumado, revisado y firmado al auxiliar contable',
+  respNote: 'ES RESPONSABILIDAD DEL CAJERO DILIGENCIAR Y ENTREGAR ESTE FORMATO A LA PERSONA ENCARGADA, Y ES RESPONSABILIDAD DE LA PERSONA ENCARGADA REVISARLO Y ENTREGARLO AL AUXILIAR CONTABLE.',
+  entregar: 'ENTREGAR SUMADO, REVISADO Y FIRMADO AL AUXILIAR CONTABLE',
   semana: 'Semana', mes: 'Mes', anio: 'Año', rubro: 'Rubro', porPeriodo: 'por día', porMes: 'por mes', sinDatos: 'No hay planillas en este período.',
   ve: 'Venta', ef: 'Efectivo', mat: 'Compra de material', cierres: 'planillas', saldosFin: 'Saldos al cierre del período',
   porConcepto: 'Por concepto', secG: 'Compras y gastos', secC: 'Caja', secK: 'Cartera', buscar: 'Buscar un rubro: fletes, servicios, un cliente…', concepto: 'Concepto', total: 'Total', veces: 'Veces',
@@ -72,6 +72,12 @@ const T = {
   linksT: 'Enlace de cada negocio', linksP: 'Cada negocio recibe su propio enlace y solo ve y llena sus planillas.', enviar: 'Enviar', copy: 'Copiar', copied: 'Enlace copiado',
   shareBiz: 'Hola, esta es la app para llenar el cierre diario de {b}. Ábrala y guárdela en la pantalla del celular: ',
   addNeg: 'Agregar negocio', negName: 'Nombre del negocio', made: 'Hecho por',
+ pHi: 'hora inicio:', pHf: 'hora final:', pFact: 'TODO RESPALDADO CON FACTURA ORIGINAL', pDesc: 'Descripcion', pCr: 'CREDITO', pCo: 'CONTADO', pOg: 'Vr. Otros Gastos', pOp: 'Vr. Gast. Operativos', pTot: 'TOTALES:',
+  pTgN: 'Este es la suma de las compras+los gastos>>>>>>', pTg: 'TOTAL GASTOS:', pEfN: 'Este es el efectivo que le queda de la venta diaria>>>>>>', pEf: 'EFECTIVO:', pVeN: 'Suma el total de gastos+ el efectivo >>>>>>>>>>>>>', pVe: 'VENTA:',
+  pEfAnt: 'EFECTIVO ANTERIOR PLANILLA:', pEfAcN: 'Este es la suma de el efectivo del dia + El efectivo de la anterior planilla >>>>>>>>>>>>>>>>>>>>>>>>', pEfAc: 'TOTAL EFECTIVO ACUMULADO:',
+  pRev: 'REVISÓ:', pAdm: 'ADMINISTRADOR O ENCARGADO DE TURNO', pRec: 'RECIBE:', pAux: 'AUXILIAR CONTABLE', pMovH: 'DESCRIPCION DEL MOVIMIENTO', pMov: 'DESCRIPCION DEL MOVIMIENTO',
+  pPasaEf: 'Este Pasa a la Siguiente Planilla>>>>>>>>>>>>>>>>>>SALDO EFECTIVO ACUMULADO:>>>', pMatAnt: 'SALDO MATERIAL ANTERIOR PLANILLA >>>>', pMatDia: 'TOTAL COMPRA DE MATERIAL EN EL DIA>>>>', pPasaMat: 'Este Pasa a la Siguiente Planilla>>>>SALDO MATERIAL ACUMULADO:>>>',
+  pCarH: 'SEGUIMIENTO DE CARTERA', pCarAnt: 'SALDO DE CARTERA PLANILLA ANTERIOR>>>>', pGira: 'En el celular, gírelo de lado para ver la hoja completa.',
   waTitulo: 'CIERRE DIARIO', waInf: 'INFORME DE CIERRES' },
  en: { app: 'Daily Closing', title: 'Andrés’ Stores', settings: 'Settings', update: 'Refresh', nueva: 'New sheet', planillas: 'Sheets', informes: 'Reports', todos: 'All',
   ventaHoy: 'Sales today', ventaSem: 'Sales this week', ventaMes: 'Sales this month', venta: 'Sales', efectivo: 'Cash', sinSubir: 'Not uploaded', turno: 'Shift',
@@ -113,6 +119,12 @@ const T = {
   linksT: 'Link for each store', linksP: 'Each store gets its own link and only sees and fills in its own sheets.', enviar: 'Send', copy: 'Copy', copied: 'Link copied',
   shareBiz: 'Hi, this is the app to fill in the daily closing for {b}. Open it and add it to your home screen: ',
   addNeg: 'Add store', negName: 'Store name', made: 'Made by',
+ pHi: 'start time:', pHf: 'end time:', pFact: 'EVERYTHING BACKED BY THE ORIGINAL INVOICE', pDesc: 'Description', pCr: 'CREDIT', pCo: 'CASH', pOg: 'Other Expenses', pOp: 'Operating Exp.', pTot: 'TOTALS:',
+  pTgN: 'Purchases plus expenses>>>>>>', pTg: 'TOTAL EXPENSES:', pEfN: 'Cash left from the day’s sales>>>>>>', pEf: 'CASH:', pVeN: 'Total expenses plus cash >>>>>>', pVe: 'SALES:',
+  pEfAnt: 'CASH FROM PREVIOUS SHEET:', pEfAcN: 'Today’s cash + cash from the previous sheet >>>>>>', pEfAc: 'TOTAL ACCUMULATED CASH:',
+  pRev: 'REVIEWED BY:', pAdm: 'MANAGER OR SHIFT LEAD', pRec: 'RECEIVED BY:', pAux: 'ACCOUNTING ASSISTANT', pMovH: 'MOVEMENT DESCRIPTION', pMov: 'MOVEMENT DESCRIPTION',
+  pPasaEf: 'Carries to the Next Sheet>>>>>>ACCUMULATED CASH BALANCE:>>>', pMatAnt: 'MATERIAL BALANCE FROM PREVIOUS SHEET >>>>', pMatDia: 'TOTAL MATERIAL PURCHASED TODAY>>>>', pPasaMat: 'Carries to the Next Sheet>>>>ACCUMULATED MATERIAL BALANCE:>>>',
+  pCarH: 'RECEIVABLES', pCarAnt: 'RECEIVABLES BALANCE FROM PREVIOUS SHEET>>>>', pGira: 'On a phone, turn it sideways to see the whole sheet.',
   waTitulo: 'DAILY CLOSING', waInf: 'CLOSING REPORT' }
 };
 const t = k => (T[lang] && T[lang][k]) || T.es[k] || k;
@@ -312,7 +324,7 @@ function listHTML() {
 
 /* ---------- Formulario ---------- */
 const blank = () => ({ id: Date.now().toString(36) + Math.random().toString(36).slice(2, 8), fecha: hoy(), turno: '', horaIni: '', horaFin: '', responsable: '', auxiliar: '',
-  gastos: [{}, {}, {}, {}], efectivo: 0, efAnt: 0, movs: [{}, {}], matAnt: 0, matDia: null, carAnt: 0, cartera: [{}, {}], reviso: '', recibe: '', obs: '', createdAt: Date.now() });
+  gastos: [], efectivo: 0, efAnt: 0, movs: [], matAnt: 0, matDia: null, carAnt: 0, cartera: [], reviso: '', recibe: '', obs: '', createdAt: Date.now() });
 
 function carry(d, silent) {
   const pv = d.neg ? prevOf(d.neg, d.fecha, d.id, d.createdAt) : null;
@@ -327,7 +339,8 @@ function openForm(id) {
     const mine = planillas()[0]; if (mine && !owner()) { d.responsable = mine.responsable || ''; d.auxiliar = mine.auxiliar || '' }
     carry(d, true); st.draft = d; st.isNew = true;
   }
-  for (const k of ['gastos', 'movs', 'cartera']) if (!st.draft[k] || !st.draft[k].length) st.draft[k] = [{}];
+  for (const k of ['gastos', 'movs', 'cartera']) if (!st.draft[k]) st.draft[k] = [];
+  ROWS.gastos = Math.max(11, st.draft.gastos.length); ROWS.movs = Math.max(8, st.draft.movs.length); ROWS.cartera = Math.max(10, st.draft.cartera.length);
   st.touched = false; st.view = 'form'; render(); scrollTo(0, 0);
 }
 const inp = (k, v, ph) => `<input data-k="${k}" value="${esc(v ?? '')}" placeholder="${esc(ph || '')}" autocomplete="off">`;
@@ -335,67 +348,20 @@ const minp = (k, v, ph) => `<input class="money" data-k="${k}" data-m="1" inputm
 
 function renderForm() {
   const d = st.draft;
-  const negField = owner() && negs.length > 1
-    ? `<select data-k="neg"><option value="">—</option>${negs.map(n => `<option value="${esc(n.tok)}" ${d.neg === n.tok ? 'selected' : ''}>${esc(n.name)}</option>`).join('')}</select>`
-    : `<input value="${esc(negName(d.neg))}" disabled>`;
-  const gRows = d.gastos.map((r, i) => `<div class="ln"><div class="ln-top">${inp(`gastos.${i}.d`, r.d, t('desc'))}<button class="x" data-rm="gastos.${i}">${t('quitar')}</button></div>
-    <div class="ln-cols c4"><div><label>${t('cr')}</label>${minp(`gastos.${i}.cr`, r.cr)}</div><div><label>${t('co')}</label>${minp(`gastos.${i}.co`, r.co)}</div>
-    <div><label>${t('og')}</label>${minp(`gastos.${i}.og`, r.og)}</div><div><label>${t('op')}</label>${minp(`gastos.${i}.op`, r.op)}</div></div></div>`).join('');
-  const mRows = d.movs.map((r, i) => `<div class="ln"><div class="ln-top">${inp(`movs.${i}.d`, r.d, t('descMov'))}<button class="x" data-rm="movs.${i}">${t('quitar')}</button></div>
-    <div class="ln-cols c3"><div><label>${t('en')}</label>${minp(`movs.${i}.en`, r.en)}</div><div><label>${t('sa')}</label>${minp(`movs.${i}.sa`, r.sa)}</div>
-    <div><label>${t('saldo')}</label><div class="ro" data-o="mov.${i}"></div></div></div></div>`).join('');
-  const cRows = d.cartera.map((r, i) => `<div class="ln"><div class="ln-top">${inp(`cartera.${i}.cl`, r.cl, t('cliente'))}<input data-k="cartera.${i}.fa" value="${esc(r.fa ?? '')}" placeholder="${t('factura')}" style="max-width:110px" autocomplete="off"><button class="x" data-rm="cartera.${i}">${t('quitar')}</button></div>
-    <div class="ln-cols c3"><div><label>${t('ab')}</label>${minp(`cartera.${i}.ab`, r.ab)}</div><div><label>${t('llS')}</label>${minp(`cartera.${i}.ll`, r.ll)}</div>
-    <div><label>${t('saldo')}</label><div class="ro" data-o="car.${i}"></div></div></div></div>`).join('');
-
+  for (const k of Object.keys(ROWS)) while (d[k].length < ROWS[k]) d[k].push({});
   $('#app').innerHTML = `<main>
     <div class="row" style="margin-top:12px"><button class="btn btn-soft" id="backBtn" style="flex:0 0 auto">${t('volver')}</button><button class="btn btn-sm" id="carryBtn">${t('traer')}</button></div>
-    <div class="card"><h3>${t('fDatos')}</h3><div class="sub"></div>
-      <div class="field"><label>${t('establecimiento')}</label>${negField}</div>
-      <div class="grid2"><div class="field"><label>${t('fecha')}</label><input type="date" data-k="fecha" value="${esc(d.fecha)}"></div><div class="field"><label>${t('turno')}</label>${inp('turno', d.turno)}</div></div>
-      <div class="grid2"><div class="field"><label>${t('hIni')}</label><input type="time" data-k="horaIni" value="${esc(d.horaIni)}"></div><div class="field"><label>${t('hFin')}</label><input type="time" data-k="horaFin" value="${esc(d.horaFin)}"></div></div>
-      <div class="grid2"><div class="field"><label>${t('responsable')}</label>${inp('responsable', d.responsable)}</div><div class="field"><label>${t('auxiliar')}</label>${inp('auxiliar', d.auxiliar)}</div></div>
-    </div>
-    <div class="card"><h3>${t('fGastos')}</h3><div class="sub">${t('fGastosS')}</div>${gRows}
-      <button class="btn btn-soft" data-add="gastos" style="width:100%">${t('addRow')}</button>
-      <div style="margin-top:10px"><div class="tot note"><span>${t('tCr')}</span><b data-o="cr"></b></div><div class="tot"><span>${t('tCo')}</span><b data-o="co"></b></div>
-      <div class="tot"><span>${t('tOg')}</span><b data-o="og"></b></div><div class="tot"><span>${t('tOp')}</span><b data-o="op"></b></div></div>
-    </div>
-    <div class="card"><h3>${t('fVenta')}</h3><div class="sub"></div>
-      <div class="tot"><span>${t('tg')}<div class="hint" style="margin:0">${t('tgN')}</div></span><b data-o="tg"></b></div>
-      <div class="tot"><span>${t('efectivo')}<div class="hint" style="margin:0">${t('efN')}</div></span>${minp('efectivo', d.efectivo)}</div>
-      <div class="tot big"><span>${t('venta')}<div class="hint" style="margin:0;font-weight:400">${t('veN')}</div></span><b data-o="ve"></b></div>
-      <div class="tot"><span>${t('efAnt')}</span>${minp('efAnt', d.efAnt)}</div>
-      <div class="tot big"><span>${t('efAcum')}<div class="hint" style="margin:0;font-weight:400">${t('efAcumN')}</div></span><b data-o="efAcum"></b></div>
-    </div>
-    <div class="card"><h3>${t('fMov')}</h3><div class="sub">${t('fMovS')}</div>${mRows}
-      <button class="btn btn-soft" data-add="movs" style="width:100%">${t('addRow')}</button>
-      <div class="tot big" style="margin-top:10px"><span>${t('saldoEf')}<div class="hint" style="margin:0;font-weight:400">${t('pasa')}</div></span><b data-o="saldoEf"></b></div>
-    </div>
-    <div class="card"><h3>${t('fMat')}</h3><div class="sub"></div>
-      <div class="tot"><span>${t('matAnt')}</span>${minp('matAnt', d.matAnt)}</div>
-      <div class="tot"><span>${t('matDia')}<div class="hint" style="margin:0">${t('auto')}</div></span><input class="money" data-k="matDia" data-m="1" data-null="1" inputmode="numeric" value="${d.matDia === null || d.matDia === undefined ? '' : fin(num(d.matDia)) || '0'}" autocomplete="off"></div>
-      <div class="tot big"><span>${t('matAcum')}<div class="hint" style="margin:0;font-weight:400">${t('pasa')}</div></span><b data-o="matAcum"></b></div>
-    </div>
-    <div class="card"><h3>${t('fCar')}</h3><div class="sub"></div>
-      <div class="tot" style="margin-bottom:10px"><span>${t('carAnt')}</span>${minp('carAnt', d.carAnt)}</div>${cRows}
-      <button class="btn btn-soft" data-add="cartera" style="width:100%">${t('addRow')}</button>
-      <div class="tot big" style="margin-top:10px"><span>${t('carFin')}</span><b data-o="carFin"></b></div>
-    </div>
-    <div class="card"><h3>${t('fFirmas')}</h3><div class="sub">${t('entregar')}</div>
-      <div class="field"><label>${t('reviso')}</label>${inp('reviso', d.reviso)}</div>
-      <div class="field"><label>${t('recibe')}</label>${inp('recibe', d.recibe)}</div>
-      <div class="field"><label>${t('obs')}</label>${inp('obs', d.obs)}</div>
-    </div>
+    <div class="paperwrap">${sheetHTML(d, true)}</div>
+    <div class="row" style="margin-top:10px"><button class="btn btn-sm" data-add="gastos">+ ${t('fGastos')}</button><button class="btn btn-sm" data-add="movs">+ ${t('fMov')}</button><button class="btn btn-sm" data-add="cartera">+ ${t('secK')}</button></div>
+    <div class="hint" style="text-align:center">${t('pGira')}</div>
     ${footer()}</main>
-    <div class="savebar"><div><small>${t('venta')}</small><b data-o="ve"></b></div><div><small>${t('saldoEf')}</small><b data-o="saldoEf"></b></div><button class="btn btn-mint" id="saveBtn">${t('guardar')}</button></div>`;
+    <div class="savebar"><div><small>${t('venta')}</small><b data-o="ve" data-$="1"></b></div><div><small>${t('saldoEf')}</small><b data-o="saldoEf" data-$="1"></b></div><button class="btn btn-mint" id="saveBtn">${t('guardar')}</button></div>`;
 
-  totals();
+  fitPaper(); totals();
   $('#backBtn').onclick = () => { if (st.touched && !confirm(t('descartar'))) return; st.view = st.isNew ? 'list' : 'view'; render() };
   $('#carryBtn').onclick = () => { carry(d); st.touched = true; renderForm() };
   $('#saveBtn').onclick = saveDraft;
-  $$('[data-add]').forEach(b => b.onclick = () => { d[b.dataset.add].push({}); renderForm(); const f = $$(`[data-k^="${b.dataset.add}."]`).filter(e => /\.(d|cl)$/.test(e.dataset.k)).pop(); if (f) f.focus() });
-  $$('[data-rm]').forEach(b => b.onclick = () => { const [k, i] = b.dataset.rm.split('.'); d[k].splice(+i, 1); if (!d[k].length) d[k].push({}); st.touched = true; renderForm() });
+  $$('[data-add]').forEach(b => b.onclick = () => { ROWS[b.dataset.add]++; d[b.dataset.add].push({}); renderForm(); const f = $$(`[data-k^="${b.dataset.add}."]`).filter(e => /\.(d|cl)$/.test(e.dataset.k)).pop(); if (f) f.focus() });
   $$('[data-k]').forEach(el => el.addEventListener(el.tagName === 'SELECT' || el.type === 'date' || el.type === 'time' ? 'change' : 'input', () => {
     const path = el.dataset.k.split('.'); let o = d; while (path.length > 1) o = o[path.shift()];
     if (el.dataset.m) {
@@ -409,10 +375,12 @@ function renderForm() {
   }));
 }
 function totals() {
-  const d = st.draft, c = calc(d);
+  const d = st.draft, c = calc(d), has = (r, ks) => r && ks.some(k => r[k]);
   $$('[data-o]').forEach(e => {
     const k = e.dataset.o;
-    e.textContent = k.startsWith('mov.') ? money(c.movS[+k.slice(4)]) : k.startsWith('car.') ? money(c.carS[+k.slice(4)]) : money(c[k]);
+    if (k.startsWith('mov.')) { const i = +k.slice(4); e.textContent = has(d.movs[i], ['d', 'en', 'sa']) ? fin(c.movS[i]) || '0' : '' }
+    else if (k.startsWith('car.')) { const i = +k.slice(4); e.textContent = has(d.cartera[i], ['cl', 'fa', 'ab', 'll']) ? fin(c.carS[i]) || '0' : '' }
+    else e.textContent = e.dataset.$ ? money(c[k]) : fin(c[k]) || '0';
   });
   const m = $('[data-k="matDia"]'); if (m) m.placeholder = fin(c.matAuto) || '0';
 }
@@ -436,49 +404,57 @@ async function saveDraft() {
 }
 
 /* ---------- Hoja: vista, impresión, WhatsApp y Excel ---------- */
-function paperHTML(p) {
-  const c = calc(p), m = v => v ? money(v) : '';
-  const pad = (a, n) => a.concat(Array(Math.max(0, n - a.length)).fill({}));
-  const g = pad(p.gastos || [], 6).map(r => `<tr><td>${esc(r.d)}&nbsp;</td><td class="r">${m(num(r.cr))}</td><td class="r">${m(num(r.co))}</td><td class="r">${m(num(r.og))}</td><td class="r">${m(num(r.op))}</td></tr>`).join('');
-  const mv = pad(p.movs || [], 3).map((r, i) => `<tr><td colspan="2">${esc(r.d)}&nbsp;</td><td class="r">${m(num(r.en))}</td><td class="r">${m(num(r.sa))}</td><td class="r">${r.d || r.en || r.sa ? money(c.movS[i]) : ''}</td></tr>`).join('');
-  const ca = pad(p.cartera || [], 3).map((r, i) => `<tr><td>${esc(r.cl)}&nbsp;</td><td>${esc(r.fa)}</td><td class="r">${m(num(r.ab))}</td><td class="r">${m(num(r.ll))}</td><td class="r">${r.cl || r.ab || r.ll ? money(c.carS[i]) : ''}</td></tr>`).join('');
-  const cols = '<colgroup><col style="width:36%"><col style="width:16%"><col style="width:16%"><col style="width:16%"><col style="width:16%"></colgroup>';
-  return `<div class="paper">
-    <div class="ttl"><b>${t('waTitulo')}</b><span>Vibras Positivas HM</span></div>
+// La hoja: igual a la planilla de papel de Andrés. Con edit=true las casillas se pueden llenar.
+const ROWS = { gastos: 11, movs: 8, cartera: 10 };
+function sheetHTML(p, edit) {
+  const c = calc(p), E = edit;
+  const pad = (a, n) => (a || []).concat(Array(Math.max(0, n - (a || []).length)).fill({}));
+  const tx = (k, v, extra) => E ? `<input data-k="${k}" value="${esc(v ?? '')}" autocomplete="off" ${extra || ''}>` : esc(v ?? '');
+  const mo = (k, v) => `<td class="m">${E ? `<input data-k="${k}" data-m="1" inputmode="numeric" value="${fin(num(v))}" autocomplete="off">` : (num(v) ? fin(num(v)) : '')}</td>`;
+  const out = (k, v, show) => `<td class="m o"><span ${E ? `data-o="${k}"` : ''}>${show === false ? '' : fin(v) || '0'}</span></td>`;
+  const used = (r, ks) => ks.some(k => r[k]);
+  const neg = E && owner() && negs.length > 1
+    ? `<select data-k="neg"><option value="">—</option>${negs.map(n => `<option value="${esc(n.tok)}" ${p.neg === n.tok ? 'selected' : ''}>${esc(n.name)}</option>`).join('')}</select>`
+    : `<b>${esc(negName(p.neg))}</b>`;
+  const fecha = E ? `<input type="date" data-k="fecha" value="${esc(p.fecha)}">` : esc(p.fecha.split('-').reverse().join(' / '));
+  const hora = (k, v) => E ? `<input type="time" data-k="${k}" value="${esc(v || '')}">` : esc(v || '');
+  const g = pad(p.gastos, ROWS.gastos).map((r, i) => `<tr><td>${tx(`gastos.${i}.d`, r.d)}</td>${mo(`gastos.${i}.cr`, r.cr)}${mo(`gastos.${i}.co`, r.co)}${mo(`gastos.${i}.og`, r.og)}${mo(`gastos.${i}.op`, r.op)}</tr>`).join('');
+  const mv = pad(p.movs, ROWS.movs).map((r, i) => `<tr><td colspan="2">${tx(`movs.${i}.d`, r.d, `placeholder="${E ? t('pMov') : ''}"`)}</td>${mo(`movs.${i}.en`, r.en)}${mo(`movs.${i}.sa`, r.sa)}${out(`mov.${i}`, c.movS[i], used(r, ['d', 'en', 'sa']))}</tr>`).join('');
+  const ca = pad(p.cartera, ROWS.cartera).map((r, i) => `<tr><td>${tx(`cartera.${i}.cl`, r.cl)}</td><td class="fa">${tx(`cartera.${i}.fa`, r.fa, `placeholder="${E ? 'FACT #' : ''}"`)}</td>${mo(`cartera.${i}.ab`, r.ab)}${mo(`cartera.${i}.ll`, r.ll)}${out(`car.${i}`, c.carS[i], used(r, ['cl', 'fa', 'ab', 'll']))}</tr>`).join('');
+  const cols = '<colgroup><col style="width:38%"><col style="width:13%"><col style="width:16%"><col style="width:16%"><col style="width:17%"></colgroup>';
+  const matVal = E ? `<td class="m"><input data-k="matDia" data-m="1" data-null="1" inputmode="numeric" value="${p.matDia === null || p.matDia === undefined ? '' : fin(num(p.matDia)) || '0'}" placeholder="${fin(c.matAuto) || '0'}" autocomplete="off"></td>` : `<td class="m">${fin(c.mat) || '0'}</td>`;
+  return `<div class="paper ${E ? 'edit' : ''}">
     <table class="hd">${cols}
-      <tr><td colspan="2"><span class="k">${t('establecimiento')}</span>${esc(negName(p.neg))}</td><td><span class="k">${t('turno')}</span>${esc(p.turno)}&nbsp;</td><td><span class="k">${t('hIni')}</span>${esc(p.horaIni)}&nbsp;</td><td><span class="k">${t('hFin')}</span>${esc(p.horaFin)}&nbsp;</td></tr>
-      <tr><td><span class="k">${t('fecha')}</span>${esc(fd(p.fecha))}</td><td colspan="2"><span class="k">${t('responsable')}</span>${esc(p.responsable)}&nbsp;</td><td colspan="2"><span class="k">${t('auxiliar')}</span>${esc(p.auxiliar)}&nbsp;</td></tr>
-    </table>
-    <div class="note">${t('respNote')}</div>
-    <table>${cols}
-      <tr><th rowspan="2">${t('desc')}</th><th colspan="2">${t('comprasPlaza')}</th><th>${t('gastosMuertos')}</th><th style="font-size:8px">${t('opNote')}</th></tr>
-      <tr><th>${t('cr')}</th><th>${t('co')}</th><th>${t('og')}</th><th>${t('op')}</th></tr>${g}
-      <tr class="big"><td class="lb">${t('totales')}</td><td class="r dk" title="${t('noSumar')}">${money(c.cr)}</td><td class="r">${money(c.co)}</td><td class="r">${money(c.og)}</td><td class="r">${money(c.op)}</td></tr>
+      <tr><td colspan="2" class="nb"><i>${t('establecimiento')}</i> ${neg}</td><td class="nb"><i>${t('turno')}:</i> ${tx('turno', p.turno)}</td><td class="hr"><span class="k">${t('pHi')}</span>${hora('horaIni', p.horaIni)}</td><td class="hr"><span class="k">${t('pHf')}</span>${hora('horaFin', p.horaFin)}</td></tr>
+      <tr><td colspan="2" class="nb"><i>${t('fecha')}:</i> ${fecha}</td><td colspan="3" class="nb">&nbsp;</td></tr>
+      <tr><td colspan="2" class="nb"><i>${t('responsable')}:</i> ${tx('responsable', p.responsable)}</td><td colspan="3" class="nb"><i><b>${t('auxiliar')}:</b></i> ${tx('auxiliar', p.auxiliar)}</td></tr>
     </table>
     <table>${cols}
-      <tr><td class="lb" colspan="2">${t('tg')}</td><td class="r">${money(c.tg)}</td><td colspan="2" rowspan="3" class="sign">${t('reviso')}: ${esc(p.reviso)}</td></tr>
-      <tr><td class="lb" colspan="2">${t('efectivo')}</td><td class="r">${money(c.ef)}</td></tr>
-      <tr class="big"><td class="lb" colspan="2">${t('venta')}</td><td class="r">${money(c.ve)}</td></tr>
-      <tr><td class="lb" colspan="2">${t('efAnt')}</td><td class="r">${money(c.efAnt)}</td><td colspan="2" rowspan="2" class="sign">${t('recibe')}: ${esc(p.recibe)}</td></tr>
-      <tr class="big"><td class="lb" colspan="2">${t('efAcum')}</td><td class="r">${money(c.efAcum)}</td></tr>
+      <tr><td colspan="2" class="dk sm">${t('respNote')}</td><td colspan="3" class="dk c">${t('pFact')}</td></tr>
+      <tr><td rowspan="2" class="big-d">${t('pDesc')}</td><td colspan="2" class="c h">${t('comprasPlaza')}</td><td class="c h xs">${t('gastosMuertos')}</td><td class="c xs">${t('opNote')}</td></tr>
+      <tr><td class="c h2">${t('pCr')}</td><td class="c h2"><b>${t('pCo')}</b></td><td class="c">${t('pOg')}</td><td class="c">${t('pOp')}</td></tr>
+      ${g}
+      <tr><td class="tot-l">${t('pTot')}</td><td class="dk c xs">${t('noSumar')}<div ${E ? 'data-o="cr"' : ''} class="crt">${fin(c.cr) || '0'}</div></td>${out('co', c.co)}${out('og', c.og)}${out('op', c.op)}</tr>
+      <tr><td colspan="3" class="dk">&nbsp;</td><td colspan="2" class="dk c xs">${t('entregar')}</td></tr>
+      <tr><td colspan="2" class="lb"><i>${t('pTgN')}</i><b>${t('pTg')}</b></td>${out('tg', c.tg)}<td colspan="2" rowspan="2" class="sg"><span class="k">${t('pRev')}</span>${tx('reviso', p.reviso)}</td></tr>
+      <tr><td colspan="2" class="lb"><i>${t('pEfN')}</i><b>${t('pEf')}</b></td>${mo('efectivo', p.efectivo)}</tr>
+      <tr><td colspan="2" class="lb"><i>${t('pVeN')}</i><b>${t('pVe')}</b></td>${out('ve', c.ve)}<td colspan="2" class="c xs b">${t('pAdm')}</td></tr>
+      <tr><td colspan="2" class="lb"><b>${t('pEfAnt')}</b></td>${mo('efAnt', p.efAnt)}<td colspan="2" class="sg"><span class="k">${t('pRec')}</span>${tx('recibe', p.recibe)}</td></tr>
+      <tr><td colspan="2" class="lb gr"><span class="xs">${t('pEfAcN')}</span><b>${t('pEfAc')}</b></td>${out('efAcum', c.efAcum)}<td colspan="2" class="c xs b">${t('pAux')}</td></tr>
+      <tr><td colspan="2" class="c h3">${t('pMovH')}</td><td class="c h3">${t('en').toUpperCase()}</td><td class="c h3">${t('sa').toUpperCase()}</td><td class="c h3">${t('saldo').toUpperCase()}</td></tr>
+      ${mv}
+      <tr><td colspan="4" class="dk r b">${t('pPasaEf')}</td>${out('saldoEf', c.saldoEf)}</tr>
+      <tr><td colspan="3" class="lb"><b><i>${t('pMatAnt')}</i></b></td>${mo('matAnt', p.matAnt)}<td rowspan="3" class="dk">&nbsp;</td></tr>
+      <tr><td colspan="3" class="lb"><b><i>${t('pMatDia')}</i></b></td>${matVal}</tr>
+      <tr><td colspan="3" class="lb"><b><i>${t('pPasaMat')}</i></b></td>${out('matAcum', c.matAcum)}</tr>
+      <tr><td class="gr2 c xs">${t('pCarH')}</td><td colspan="3" class="dk r b">${t('pCarAnt')}</td>${mo('carAnt', p.carAnt)}</tr>
+      <tr><td class="c"><b><i>${t('cliente').toUpperCase()}</i></b></td><td class="dk c"><i>${t('factura').toUpperCase()}</i></td><td class="dk c"><i>${t('ab').toUpperCase()}</i></td><td class="dk c xs"><i>${t('ll').toUpperCase()}</i></td><td class="dk c xs">${t('carFin').toUpperCase()}</td></tr>
+      ${ca}
     </table>
-    <table>${cols}
-      <tr><th colspan="2">${t('descMov')}</th><th>${t('en')}</th><th>${t('sa')}</th><th>${t('saldo')}</th></tr>${mv}
-      <tr class="big"><td class="dk" colspan="4" style="text-align:right">${t('pasa')} — ${t('saldoEf')}</td><td class="r">${money(c.saldoEf)}</td></tr>
-    </table>
-    <table>${cols}
-      <tr><td class="lb" colspan="3">${t('matAnt')}</td><td class="r" colspan="2">${money(c.matAnt)}</td></tr>
-      <tr><td class="lb" colspan="3">${t('matDia')}</td><td class="r" colspan="2">${money(c.mat)}</td></tr>
-      <tr class="big"><td class="lb" colspan="3">${t('pasa')} — ${t('matAcum')}</td><td class="r" colspan="2">${money(c.matAcum)}</td></tr>
-    </table>
-    <table>${cols}
-      <tr><th colspan="2">${t('fCar')}</th><td class="lb" colspan="2">${t('carAnt')}</td><td class="r">${money(c.carAnt)}</td></tr>
-      <tr><th>${t('cliente')}</th><th>${t('factura')}</th><th>${t('ab')}</th><th style="font-size:8.5px">${t('ll')}</th><th>${t('carFin')}</th></tr>${ca}
-      <tr class="big"><td class="lb" colspan="4">${t('carFin')}</td><td class="r">${money(c.carFin)}</td></tr>
-    </table>
-    ${p.obs ? `<div style="margin-top:4px"><span class="k">${t('obs')}</span>${esc(p.obs)}</div>` : ''}
+    ${!E && p.obs ? `<div class="sm">${t('obs')}: ${esc(p.obs)}</div>` : ''}
   </div>`;
 }
+function paperHTML(p) { return sheetHTML(p, false) }
 
 function renderView() {
   const p = db[st.id];
@@ -508,7 +484,7 @@ function renderView() {
   };
 }
 // En el celular la hoja se encoge para que quepa completa en la pantalla
-function fitPaper() { const w = $('.paperwrap'), p = w && w.querySelector('.paper'); if (p) p.style.zoom = Math.min(1, (w.clientWidth - 2) / 560) }
+function fitPaper() { const w = $('.paperwrap'), p = w && w.querySelector('.paper'); if (p) p.style.zoom = Math.min(1, Math.max(p.classList.contains('edit') ? .68 : 0, (w.clientWidth - 2) / 820)) }
 window.addEventListener('resize', fitPaper);
 function printHTML(html) { $('#print').innerHTML = html; setTimeout(() => window.print(), 60) }
 function sendWa(txt) { window.open(`https://wa.me/${waAndres}?text=${encodeURIComponent(txt)}`, '_blank') }
