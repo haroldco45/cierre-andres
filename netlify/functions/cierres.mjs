@@ -19,6 +19,8 @@ const secret = () => process.env.LINK_SECRET || process.env.OWNER_PIN || "";
 const token = name => createHmac("sha256", secret()).update(String(name)).digest("base64url").slice(0, 12);
 const isOwner = req => !!process.env.OWNER_PIN && (req.headers.get("x-pin") || "") === process.env.OWNER_PIN;
 
+const NEGOCIOS = ["CARGUEROS", "CONCHAS", "CONCEPCION"];
+
 const YM = /^\d{4}-(0[1-9]|1[0-2])$/;
 const FECHA = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;
 const ID = /^[A-Za-z0-9_-]{6,40}$/;
@@ -37,9 +39,10 @@ export default async (req) => {
   const store = getStore("cierres");
   const owner = isOwner(req);
 
-  // Negocios: los que el administrador agrega en Ajustes
+  // Negocios de Andrés; en Ajustes el administrador puede agregar más
   const extra = (await store.get("negocios", { type: "json" })) || [];
-  const names = [...new Set(extra)];
+  const names = [...new Set([...NEGOCIOS, ...extra])];
+  const cfg = (await store.get("config", { type: "json" })) || {};
   const negocios = names.map(name => ({ name, tok: token(name) }));
   const valid = tok => negocios.some(n => n.tok === tok);
   const key = (tok, ym) => `m/${tok}/${ym}`;
@@ -59,7 +62,7 @@ export default async (req) => {
       const mes = await store.get(key(tok, ym), { type: "json" });
       if (mes) for (const p of Object.values(mes)) planillas.push({ ...p, neg: tok });
     })));
-    return json({ negocios: owner ? negocios : negocios.filter(x => x.tok === n), planillas, from, to, toks, owner, vence: VENCE() });
+    return json({ negocios: owner ? negocios : negocios.filter(x => x.tok === n), planillas, from, to, toks, owner, wa: cfg.wa || "", vence: VENCE() });
   }
 
   if (req.method === "POST") {
@@ -68,6 +71,14 @@ export default async (req) => {
     if (!body || typeof body !== "object") return json({ error: "Datos inválidos" }, 400);
 
     if (body.check) return owner ? json({ ok: true, vence: VENCE() }) : json({ error: "Clave incorrecta" }, 401);
+
+    // WhatsApp de Andrés: a ese número reportan los negocios
+    if (body.setWa !== undefined) {
+      if (!owner) return json({ error: "Clave incorrecta" }, 401);
+      const wa = String(body.setWa).replace(/\D/g, "").slice(0, 15);
+      await store.setJSON("config", { ...cfg, wa });
+      return json({ ok: true, wa });
+    }
 
     if (body.addNegocio !== undefined) {
       if (!owner) return json({ error: "Clave incorrecta" }, 401);

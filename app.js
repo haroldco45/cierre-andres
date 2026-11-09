@@ -21,7 +21,7 @@ const owner = () => !!pin;
 
 let db = LS.get('cd_pl', {});            // id -> planilla (+ neg, _dirty, _prev, _stamp)
 let negs = LS.get('cd_negs', []);        // [{name, tok}]
-let cfg = LS.get('cd_cfg', { wa: '' });
+let waAndres = LS.get('cd_wa', '');     // WhatsApp de Andrés (lo pone el administrador y llega a todos los negocios)
 let vence = LS.get('cd_vence', '');
 let lastSync = LS.get('cd_sync', 0);
 let remoteMsg = '';                      // needLink | badLink | expired
@@ -55,7 +55,7 @@ const T = {
   fCar: 'Seguimiento de cartera', carAnt: 'Saldo de cartera planilla anterior', cliente: 'Cliente', factura: '# Factura', ab: 'Abona', abT: 'Abonos de cartera', ll: 'Lleva en mercancía o préstamo', llS: 'Lleva / préstamo', carFin: 'Saldo cartera total',
   fFirmas: 'Entrega', reviso: 'Revisó (administrador o encargado de turno)', recibe: 'Recibe (auxiliar contable)', obs: 'Observaciones',
   traer: 'Traer saldos de la planilla anterior', traidos: 'Saldos traídos de la planilla del {d}', sinPrev: 'No hay una planilla anterior de este negocio.',
-  needNeg: 'Escoja el establecimiento.', needFecha: 'Escriba la fecha.', saved: 'Planilla guardada', savedOff: 'Guardada en este celular. Se sube sola cuando haya internet.',
+  needNeg: 'Escoja el establecimiento.', needFecha: 'Escriba la fecha.', saved: 'Planilla guardada. Andrés ya la puede ver.', savedOff: 'Guardada en este celular. Se sube sola cuando haya internet.',
   pend: '{n} planillas sin subir', subir: 'Subir', subidas: 'Planillas subidas', errSubir: 'No se pudieron subir. Revise el internet.',
   offline: 'Sin internet: se muestran las planillas guardadas en este celular.', alDia: 'Planillas al día', sync: 'Actualizado',
   descartar: '¿Salir sin guardar los cambios?', warnEf: 'El efectivo anterior ({a}) no coincide con el saldo de la planilla anterior ({b}).',
@@ -66,7 +66,7 @@ const T = {
   porConcepto: 'Por concepto', secG: 'Compras y gastos', secC: 'Caja', secK: 'Cartera', buscar: 'Buscar un rubro: fletes, servicios, un cliente…', concepto: 'Concepto', total: 'Total', veces: 'Veces',
   verConcepto: 'Toque un concepto para ver cómo se movió en el período.', quitarF: 'Quitar filtro', noConc: 'No hay conceptos con esa búsqueda.', cargando: 'Cargando planillas…',
   repT: 'Informe', periodo: 'Período', resumen: 'Resumen', detalle: 'Detalle', seccion: 'Sección', valor: 'Valor', libs: 'Cargando el generador de Excel, intente de nuevo en un momento.',
-  waTo: 'WhatsApp al que se mandan los cierres (opcional)', waHint: 'Con indicativo, ej. 573001234567. Si lo deja vacío, WhatsApp le pregunta a quién enviarlo.',
+  waTo: 'WhatsApp de Andrés (ahí reportan los negocios)', waHint: 'Con indicativo, ej. 573001234567. Queda puesto para los tres negocios.', enviarA: 'Enviar a Andrés por WhatsApp', okWa: 'WhatsApp guardado para todos los negocios',
   adminT: '¿Administra los negocios?', adminP: 'Andrés o su secretaria: entre con la clave para ver todos los negocios y los informes.', pin: 'Clave', enter: 'Entrar', badPin: 'Clave incorrecta',
   ownerOn: 'Modo administrador activo', exitOwner: 'Salir del modo administrador', adm: 'ADMIN',
   linksT: 'Enlace de cada negocio', linksP: 'Cada negocio recibe su propio enlace y solo ve y llena sus planillas.', enviar: 'Enviar', copy: 'Copiar', copied: 'Enlace copiado',
@@ -96,7 +96,7 @@ const T = {
   fCar: 'Receivables', carAnt: 'Receivables balance from previous sheet', cliente: 'Customer', factura: 'Invoice #', ab: 'Pays', abT: 'Receivables paid', ll: 'Takes goods or loan', llS: 'Takes / loan', carFin: 'Total receivables balance',
   fFirmas: 'Handover', reviso: 'Reviewed by (manager or shift lead)', recibe: 'Received by (accounting assistant)', obs: 'Notes',
   traer: 'Bring balances from the previous sheet', traidos: 'Balances brought from the sheet of {d}', sinPrev: 'There is no previous sheet for this store.',
-  needNeg: 'Choose the store.', needFecha: 'Enter the date.', saved: 'Sheet saved', savedOff: 'Saved on this phone. It uploads by itself when there is internet.',
+  needNeg: 'Choose the store.', needFecha: 'Enter the date.', saved: 'Sheet saved. Andrés can see it now.', savedOff: 'Saved on this phone. It uploads by itself when there is internet.',
   pend: '{n} sheets not uploaded', subir: 'Upload', subidas: 'Sheets uploaded', errSubir: 'Could not upload. Check the internet.',
   offline: 'Offline: showing the sheets saved on this phone.', alDia: 'Sheets are up to date', sync: 'Updated',
   descartar: 'Leave without saving changes?', warnEf: 'Previous cash ({a}) does not match the balance of the previous sheet ({b}).',
@@ -107,7 +107,7 @@ const T = {
   porConcepto: 'By concept', secG: 'Purchases and expenses', secC: 'Cash box', secK: 'Receivables', buscar: 'Search an item: freight, utilities, a customer…', concepto: 'Concept', total: 'Total', veces: 'Times',
   verConcepto: 'Tap a concept to see how it moved in the period.', quitarF: 'Clear filter', noConc: 'No concepts match your search.', cargando: 'Loading sheets…',
   repT: 'Report', periodo: 'Period', resumen: 'Summary', detalle: 'Detail', seccion: 'Section', valor: 'Amount', libs: 'Loading the Excel builder, try again in a moment.',
-  waTo: 'WhatsApp number closings are sent to (optional)', waHint: 'With country code, e.g. 573001234567. Leave empty and WhatsApp will ask who to send it to.',
+  waTo: 'Andrés’ WhatsApp (stores report there)', waHint: 'With country code, e.g. 573001234567. It applies to every store.', enviarA: 'Send to Andrés on WhatsApp', okWa: 'WhatsApp saved for every store',
   adminT: 'Do you manage the stores?', adminP: 'Andrés or his assistant: sign in with the PIN to see every store and the reports.', pin: 'PIN', enter: 'Sign in', badPin: 'Wrong PIN',
   ownerOn: 'Admin mode on', exitOwner: 'Leave admin mode', adm: 'ADMIN',
   linksT: 'Link for each store', linksP: 'Each store gets its own link and only sees and fills in its own sheets.', enviar: 'Send', copy: 'Copy', copied: 'Link copied',
@@ -190,6 +190,7 @@ async function load(from, to, quiet) {
     }
     remoteMsg = '';
     negs = d.negocios || []; LS.set('cd_negs', negs);
+    waAndres = d.wa || ''; LS.set('cd_wa', waAndres);
     if (st.neg !== 'all' && !negs.some(n => n.tok === st.neg)) st.neg = 'all';
     let y = from; while (y <= to) { loaded.add(y); y = addM(y, 1) }
     merge(d);
@@ -486,7 +487,8 @@ function renderView() {
   const warn = pv && calc(pv).saldoEf !== c.efAnt ? `<div class="pend" style="margin:12px 0 0"><span>${t('warnEf').replace('{a}', money(c.efAnt)).replace('{b}', money(calc(pv).saldoEf))}</span></div>` : '';
   $('#app').innerHTML = `<main>
     <div class="row" style="margin-top:12px"><button class="btn btn-soft" id="backBtn" style="flex:0 0 auto">${t('volver')}</button>${p._dirty ? `<span class="tag wt" style="align-self:center">${t('sinSubir')}</span>` : ''}</div>
-    <div class="actions"><button class="btn btn-dark" id="edBtn">${t('editar')}</button><button class="btn btn-soft" id="prBtn">${t('imprimir')}</button><button class="btn btn-wa" id="waBtn">${t('whatsapp')}</button><button class="btn btn-mint" id="xlBtn">${t('excel')}</button></div>
+    <div class="actions"><button class="btn btn-dark" id="edBtn">${t('editar')}</button><button class="btn btn-soft" id="prBtn">${t('imprimir')}</button><button class="btn btn-soft" id="xlBtn">${t('excel')}</button></div>
+    <button class="btn btn-wa" id="waBtn" style="width:100%;margin-top:8px;padding:15px;font-size:17px">${t('enviarA')}</button>
     ${warn}
     <div class="paperwrap">${paperHTML(p)}</div>
     ${owner() ? `<button class="danger" id="delBtn">${t('eliminar')}</button>` : ''}
@@ -509,7 +511,7 @@ function renderView() {
 function fitPaper() { const w = $('.paperwrap'), p = w && w.querySelector('.paper'); if (p) p.style.zoom = Math.min(1, (w.clientWidth - 2) / 560) }
 window.addEventListener('resize', fitPaper);
 function printHTML(html) { $('#print').innerHTML = html; setTimeout(() => window.print(), 60) }
-function sendWa(txt) { window.open(`https://wa.me/${(cfg.wa || '').replace(/\D/g, '')}?text=${encodeURIComponent(txt)}`, '_blank') }
+function sendWa(txt) { window.open(`https://wa.me/${waAndres}?text=${encodeURIComponent(txt)}`, '_blank') }
 function waText(p) {
   const c = calc(p), L = [];
   L.push(`*${t('waTitulo')}* — ${negName(p.neg)}`);
@@ -727,12 +729,14 @@ function openSettings() {
     : `<div class="box"><h4>${t('adminT')}</h4><p class="hint" style="margin-bottom:10px">${t('adminP')}</p>
         <div class="row"><input id="pinIn" type="password" inputmode="numeric" placeholder="${t('pin')}" style="flex:1;padding:12px 14px;border:1px solid var(--line);border-radius:12px;font-size:16px;min-width:0"><button class="btn btn-dark" id="pinGo" style="flex:0 0 auto">${t('enter')}</button></div></div>`;
   $('#sheet').innerHTML = `<h3>${t('settings')}</h3><div class="sub"></div>
-    <div class="field"><label>${t('waTo')}</label><input id="waIn" inputmode="numeric" value="${esc(cfg.wa)}"><div class="hint">${t('waHint')}</div></div>
-    <div class="row"><button class="btn btn-dark" id="cfgSave">${t('guardar')}</button><button class="btn btn-soft" id="cfgClose">${t('cerrar')}</button></div>
+    ${owner() ? `<div class="field"><label>${t('waTo')}</label><input id="waIn" inputmode="numeric" value="${esc(waAndres)}"><div class="hint">${t('waHint')}</div></div>` : ''}
+    <div class="row">${owner() ? `<button class="btn btn-dark" id="cfgSave">${t('guardar')}</button>` : ''}<button class="btn btn-soft" id="cfgClose">${t('cerrar')}</button></div>
     ${adminBox}`;
   $('#ov').classList.add('show');
   $('#cfgClose').onclick = closeSheet;
-  $('#cfgSave').onclick = () => { cfg.wa = $('#waIn').value.replace(/\D/g, ''); LS.set('cd_cfg', cfg); closeSheet(); toast(t('saved')) };
+  if ($('#cfgSave')) $('#cfgSave').onclick = async () => {
+    try { const r = await post({ setWa: $('#waIn').value }); if (!r.ok) throw 0; waAndres = (await r.json()).wa; LS.set('cd_wa', waAndres); closeSheet(); toast(t('okWa')) } catch (e) { toast(t('errSubir')) }
+  };
   $$('[data-cp]').forEach(b => b.onclick = async () => { try { await navigator.clipboard.writeText(link(negs[+b.dataset.cp])); toast(t('copied')) } catch (e) { prompt('', link(negs[+b.dataset.cp])) } });
   $$('[data-sh]').forEach(b => b.onclick = () => { const n = negs[+b.dataset.sh]; window.open(`https://wa.me/?text=${encodeURIComponent(t('shareBiz').replace('{b}', n.name) + link(n))}`, '_blank') });
   if ($('#negAdd')) $('#negAdd').onclick = async () => {
