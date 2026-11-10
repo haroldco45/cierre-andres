@@ -78,6 +78,7 @@ const T = {
   pRev: 'REVISÓ:', pAdm: 'ADMINISTRADOR O ENCARGADO DE TURNO', pRec: 'RECIBE:', pAux: 'AUXILIAR CONTABLE', pMovH: 'DESCRIPCION DEL MOVIMIENTO', pMov: 'DESCRIPCION DEL MOVIMIENTO',
   pPasaEf: 'Este Pasa a la Siguiente Planilla>>>>>>>>>>>>>>>>>>SALDO EFECTIVO ACUMULADO:>>>', pMatAnt: 'SALDO MATERIAL ANTERIOR PLANILLA >>>>', pMatDia: 'TOTAL COMPRA DE MATERIAL EN EL DIA>>>>', pPasaMat: 'Este Pasa a la Siguiente Planilla>>>>SALDO MATERIAL ACUMULADO:>>>',
   pCarH: 'SEGUIMIENTO DE CARTERA', pCarAnt: 'SALDO DE CARTERA PLANILLA ANTERIOR>>>>', pGira: 'En el celular, gírelo de lado para ver la hoja completa.',
+  bkT: 'Copia de seguridad', bkDown: 'Descargar copia', bkUp: 'Restaurar copia', bkHint: 'La app guarda sola una copia cada día. Con «Descargar copia» usted se lleva un archivo con todas las planillas de los últimos 3 años; guárdelo en su computador o en su correo. «Restaurar copia» vuelve a subir las planillas de ese archivo, sin borrar las que ya están.', bkOk: 'Copia descargada: {n} planillas', bkErr: 'No se pudo hacer la copia. Revise el internet.', bkBad: 'Ese archivo no es una copia de Cierre Diario.', bkQ: '¿Restaurar {n} planillas de la copia del {d}? Las planillas que ya existen quedan como estaban en la copia.', bkWait: 'Restaurando planillas…', bkDone: '{n} planillas restauradas', bkFail: '{n} no se pudieron subir',
   waTitulo: 'CIERRE DIARIO', waInf: 'INFORME DE CIERRES' },
  en: { app: 'Daily Closing', title: 'Andrés’ Stores', settings: 'Settings', update: 'Refresh', nueva: 'New sheet', planillas: 'Sheets', informes: 'Reports', todos: 'All',
   ventaHoy: 'Sales today', ventaSem: 'Sales this week', ventaMes: 'Sales this month', venta: 'Sales', efectivo: 'Cash', sinSubir: 'Not uploaded', turno: 'Shift',
@@ -125,6 +126,7 @@ const T = {
   pRev: 'REVIEWED BY:', pAdm: 'MANAGER OR SHIFT LEAD', pRec: 'RECEIVED BY:', pAux: 'ACCOUNTING ASSISTANT', pMovH: 'MOVEMENT DESCRIPTION', pMov: 'MOVEMENT DESCRIPTION',
   pPasaEf: 'Carries to the Next Sheet>>>>>>ACCUMULATED CASH BALANCE:>>>', pMatAnt: 'MATERIAL BALANCE FROM PREVIOUS SHEET >>>>', pMatDia: 'TOTAL MATERIAL PURCHASED TODAY>>>>', pPasaMat: 'Carries to the Next Sheet>>>>ACCUMULATED MATERIAL BALANCE:>>>',
   pCarH: 'RECEIVABLES', pCarAnt: 'RECEIVABLES BALANCE FROM PREVIOUS SHEET>>>>', pGira: 'On a phone, turn it sideways to see the whole sheet.',
+  bkT: 'Backup', bkDown: 'Download backup', bkUp: 'Restore backup', bkHint: 'The app keeps its own copy every day. “Download backup” gives you a file with every sheet from the last 3 years; keep it on your computer or in your email. “Restore backup” uploads the sheets in that file again without deleting the current ones.', bkOk: 'Backup downloaded: {n} sheets', bkErr: 'Could not make the backup. Check the internet.', bkBad: 'That file is not a Daily Closing backup.', bkQ: 'Restore {n} sheets from the backup of {d}? Sheets already saved are replaced by the backup version.', bkWait: 'Restoring sheets…', bkDone: '{n} sheets restored', bkFail: '{n} could not be uploaded',
   waTitulo: 'DAILY CLOSING', waInf: 'CLOSING REPORT' }
 };
 const t = k => (T[lang] && T[lang][k]) || T.es[k] || k;
@@ -701,6 +703,7 @@ function openSettings() {
         <p class="hint" style="margin-bottom:10px">${t('linksP')}</p>
         ${negs.map((n, i) => `<div class="tot"><span style="font-weight:600">${esc(n.name)}</span><span style="display:flex;gap:6px"><button class="btn-sm" data-cp="${i}">${t('copy')}</button><button class="btn-sm" data-sh="${i}" style="background:#1fb35a;color:#fff;border-color:#1fb35a">${t('enviar')}</button></span></div>`).join('')}
         <div class="field" style="margin-top:12px"><label>${t('addNeg')}</label><div class="row"><input id="negNew" placeholder="${t('negName')}" style="flex:1"><button class="btn btn-dark" id="negAdd" style="flex:0 0 auto">${t('addNeg')}</button></div></div>
+        <div class="field" style="margin-top:14px"><label>${t('bkT')}</label><div class="row"><button class="btn btn-dark" id="bkDown">${t('bkDown')}</button><button class="btn btn-soft" id="bkUp">${t('bkUp')}</button></div><div class="hint">${t('bkHint')}</div><input type="file" id="bkFile" accept=".json,application/json" style="display:none"></div>
         <button class="danger" id="so">${t('exitOwner')}</button></div>`
     : `<div class="box"><h4>${t('adminT')}</h4><p class="hint" style="margin-bottom:10px">${t('adminP')}</p>
         <div class="row"><input id="pinIn" type="password" inputmode="numeric" placeholder="${t('pin')}" style="flex:1;padding:12px 14px;border:1px solid var(--line);border-radius:12px;font-size:16px;min-width:0"><button class="btn btn-dark" id="pinGo" style="flex:0 0 auto">${t('enter')}</button></div></div>`;
@@ -719,6 +722,7 @@ function openSettings() {
     const name = $('#negNew').value.trim(); if (!name) return;
     try { const r = await post({ addNegocio: name }); if (!r.ok) throw 0; negs = (await r.json()).negocios; LS.set('cd_negs', negs); openSettings(); render() } catch (e) { toast(t('errSubir')) }
   };
+  if ($('#bkDown')) { $('#bkDown').onclick = backupDown; $('#bkUp').onclick = () => $('#bkFile').click(); $('#bkFile').onchange = e => { const f = e.target.files[0]; if (f) backupUp(f); e.target.value = '' } }
   if ($('#so')) $('#so').onclick = () => { pin = ''; LS.del('cd_pin'); db = Object.fromEntries(Object.entries(db).filter(([, p]) => p._dirty)); saveDb(); negs = []; LS.del('cd_negs'); st.neg = 'all'; closeSheet(); remoteMsg = ''; render(); refresh(true) };
   if ($('#pinGo')) $('#pinGo').onclick = async () => {
     const p = $('#pinIn').value.trim(); if (!p) return;
@@ -729,6 +733,39 @@ function openSettings() {
       pin = p; LS.set('cd_pin', pin); remoteMsg = ''; closeSheet(); render(); refresh(false);
     } catch (e) { toast(t('offline')) }
   };
+}
+
+/* ---------- Copia de seguridad (solo administrador) ---------- */
+async function backupDown() {
+  try {
+    const now = hoy().slice(0, 7);
+    const r = await fetch(`${API}?from=${addM(now, -35)}&to=${now}`, { cache: 'no-store', headers: { 'x-pin': pin } });
+    if (!r.ok) throw 0;
+    const d = await r.json();
+    const file = { app: 'cierre-diario', fecha: hoy(), creado: Date.now(), negocios: d.negocios, planillas: d.planillas };
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([JSON.stringify(file)], { type: 'application/json' }));
+    a.download = `copia-cierre-diario-${hoy()}.json`; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+    toast(t('bkOk').replace('{n}', d.planillas.length));
+  } catch (e) { toast(t('bkErr')) }
+}
+async function backupUp(f) {
+  let file;
+  try { file = JSON.parse(await f.text()) } catch (e) { return toast(t('bkBad')) }
+  if (!file || file.app !== 'cierre-diario' || !Array.isArray(file.planillas)) return toast(t('bkBad'));
+  if (!confirm(t('bkQ').replace('{n}', file.planillas.length).replace('{d}', file.fecha ? fd(file.fecha) : ''))) return;
+  // El negocio se busca por el nombre, por si el enlace cambió
+  const nombre = Object.fromEntries((file.negocios || []).map(n => [n.tok, n.name]));
+  let ok = 0, fail = 0;
+  toast(t('bkWait'));
+  for (const p of file.planillas) {
+    const neg = negs.find(n => n.name === nombre[p.neg]) || negs.find(n => n.tok === p.neg);
+    if (!neg) { fail++; continue }
+    try { const { neg: _n, ...pl } = p; const r = await post({ n: neg.tok, planilla: pl, prevFecha: pl.fecha }); if (!r.ok) throw 0; ok++ } catch (e) { fail++ }
+  }
+  closeSheet(); await refresh(true);
+  toast(t('bkDone').replace('{n}', ok) + (fail ? ' · ' + t('bkFail').replace('{n}', fail) : ''));
 }
 
 /* ---------- Arranque ---------- */
